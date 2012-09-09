@@ -1,12 +1,9 @@
 #USAGE: python rotN.py {file path} {shift}
 
-#simple string shift script
-#you can pass in the arguments or just enter data
-#at runtime.
-
 from string import maketrans
 import sys
 
+#Read command line args and set variables
 if len(sys.argv) > 1:
     path = sys.argv[1]
 
@@ -15,7 +12,7 @@ if len(sys.argv) > 1:
             data = f.read()
     except IOError as e:
         print 'Invalid File Path'
-        print 'USAGE: python rotN.py {file path} {shift}'
+        print 'USAGE: python rotN.py {file path(opt)} {shift(opt)}'
         sys.exit()
 
     if len(sys.argv) > 2:
@@ -23,28 +20,25 @@ if len(sys.argv) > 1:
             shift = int(sys.argv[2])
         except:
             print 'Invalid shift'
-            print 'USAGE: python rotN.py {file path} {shift}'
+            print 'USAGE: python rotN.py {file path(opt)} {shift(opt)}'
             sys.exit()
-    else: #If no shift specified, use 13
+    else: #If no shift specified, use 13(ROT13)
         shift = 13
 
-else:
+else:#no args so take data in from user
     data = raw_input("Enter data to translate: ")
     while 1:
-        s = raw_input("Enter shift: ")
-        if s == "":
-            shift = 13 #If no shift specified, use 13
+        try:
+            shift = int(input("Enter shift: "))
             break
-        else:
-            try:
-                shift = int(s)
-                break
-            except:
-                print 'Invalid shift.'
+        except:
+            print 'Invalid shift.'
 
+#create the translation
 intab = 'abcdefghijklmnopqrstuvwxyz'
 outtab = intab[shift:] + intab[0:shift]
 
 trantab = maketrans(intab,outtab)
 
+#print the translated data
 print data.lower().translate(trantab)
