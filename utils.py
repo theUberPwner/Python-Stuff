@@ -26,9 +26,9 @@ def forwardPrimeGen():
         num += 2#save a little time by just skipping even numbers
 	
 def is_prime(n):
-	for y in range(int(math.sqrt(n))+1,1,-1):
-		if index % y == 0:
-		    return False
+    for y in range(int(math.sqrt(n))+1,1,-1):
+        if index % y == 0:
+            return False
 	
     return True
 				
@@ -72,7 +72,7 @@ def binary2decimal(b_num):
 
     return decimal
 
-def decimal2binary(d_num):
+def decimal2binary(d_num,places):
     binary = ''
 
     factor = 1
@@ -87,14 +87,17 @@ def decimal2binary(d_num):
             binary += '0'
 
         factor /= 2
+        
+    while len(binary) < places:
+        binary = "0" + binary
 
     return binary
     
 def binary2hex(b_num):
-    pass
+    return hex(int(b_num, 2))
 
-def hex2binary(h)num):
-    pass
+def hex2binary(h_num):
+    return bin(int(h_num, 16))
 
 #####################################################################
 
