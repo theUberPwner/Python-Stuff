@@ -12,15 +12,13 @@ import time
 import pywapi
 import random
 
-insults = ['idiot','moron','dumbass','loser']
-
 #authenticate with twitter and return the api object
 def twitter_auth(verify=False):
-    consumer_key="S3o1mWFcDPXgwNBLQu64Hw"
-    consumer_secret="VUceCzCSR0F2nrFdhAd4gRpdKuFJ9Qbe3j2ThXjc478"
+    consumer_key=""
+    consumer_secret=""
 
-    access_token="615596453-z4OwcGzoCk9QRxKt3ILODhMVBC2xY55HGS50VbOU"
-    access_token_secret="xMZvKhanLwZZgJEFOR4XfWLRIUC9C8WwUGg3jg7rc"
+    access_token=""
+    access_token_secret=""
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
@@ -61,11 +59,7 @@ def construct_tweet(weather):
     wind = weather["current_conditions"]["wind_condition"].replace("Wind: ","")
 
     tweet = "It is currently " + temp_f + " degrees F (" + temp_c + " C) " +\
-            "and " + condition + " in " + city + ' '
-
-    #add custom stuff here
-    r = random.randint(0,len(insults)-1)
-    tweet += insults[r]
+            "and " + condition + " in " + city
 
     return tweet
 
