@@ -1,37 +1,16 @@
 #Python: Tic Tac Toe
-#Computer blocks winning moves and plays randomly otherwise
-#If number of games to play is greater than 1 the computer will automatically
-#play out that many games and return the results. You can also view any of these
-#games (including each turn taken) once they are complete.
 import random
 
 class TicTacToe():
-    #variables used for computer play
-    x_wins = 0
-    o_wins = 0
-    ties = 0
-    
+
     #display the game board    
-    def show(self,board=None):
-        if board == None:
-            board = self.board
-            
-        print '##############'
-        print ' ',board[0],'|',board[1],'|',board[2]
-        print '  ----------'
-        print ' ',board[3],'|',board[4],'|',board[5]
-        print '  ----------'
-        print ' ',board[6],'|',board[7],'|',board[8]
-        print '##############'
-        
-    #display game board from list of turns
-    def show_old(self,turns):
-        b = [1,2,3,4,5,6,7,8,9]
-        
-        for t in turns:
-            b[t[1]-1] = t[0]
-            
-        self.show(board=b)
+    def show(self):
+        board = self.board
+        print board[0],'|',board[1],'|',board[2]
+        print '----------'
+        print board[3],'|',board[4],'|',board[5]
+        print '----------'
+        print board[6],'|',board[7],'|',board[8]
 
     #initial take_turn method that passes the player to either take_cturn 
     #or take_pturn depending on whether or not is computer player
@@ -130,6 +109,10 @@ class TicTacToe():
                     return line[1] + 1
         
         return -1
+   
+    x_wins = 0
+    o_wins = 0
+    ties = 0
 
     def new_game(self, allcomp=False):
         self.speed_mode=allcomp
@@ -231,4 +214,3 @@ if __name__ == '__main__':
 
             game = int(game)
             print game_data[game]
-            TTT.show_old(game_data[game])
